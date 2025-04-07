@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Discover India's Monuments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+  :root {
+    --primary-blue: #1976d2;
+    --dark-blue: #1565c0;
+    --light-blue: #e3f2fd;
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+    --dark-gray: #333333;
+    --text-gray: #555555;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-blue);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--dark-gray);
+  }
+
+  .header {
+    text-align: center;
+    padding: 40px 0;
+    width: 100%;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--dark-blue));
+  }
+
+  .logo {
+    font-size: 36px;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    color: var(--text-gray);
+    font-weight: 500;
+  }
+
+  .search-container {
+    width: 85%;
+    max-width: 800px;
+    background: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 30px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .search-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 15px 20px 15px 50px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 30px;
+    font-size: 16px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    color: var(--dark-gray);
+  }
+
+  .search-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+    outline: none;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-blue);
+    font-size: 18px;
+  }
+
+  .search-button {
+    background: linear-gradient(45deg, var(--primary-blue), var(--dark-blue));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-button:hover {
+    background: linear-gradient(45deg, var(--dark-blue), var(--primary-blue));
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+  }
+
+  .filters-section {
+    margin-top: 25px;
+  }
+
+  .filter-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filter-title i {
+    color: var(--primary-blue);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .filter-chip {
+    background: var(--light-gray);
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid var(--medium-gray);
+  }
+
+  .filter-chip:hover {
+    background: var(--medium-gray);
+    transform: translateY(-2px);
+  }
+
+  .filter-chip.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+  }
+
+  .sort-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .sort-button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--medium-gray);
+    background: var(--light-gray);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sort-button:hover {
+    background: var(--medium-gray);
+    transform: translateY(-2px);
+  }
+
+  .sort-button.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+  }
+
+  .suggested-monuments {
+    width: 85%;
+    max-width: 1200px;
+    margin: 40px 0;
+  }
+
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .results-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-gray);
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .results-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-blue);
+    border-radius: 3px;
+  }
+
+  .monument-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .monument-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .monument-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .monument-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .monument-card:hover .monument-image {
+    transform: scale(1.05);
+  }
+
+  .monument-info {
+    padding: 20px;
+  }
+
+  .monument-name {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+  }
+
+  .monument-location {
+    color: var(--text-gray);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 5px;
+  }
+
+  .monument-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .monument-tag {
+    background: var(--light-blue);
+    border-radius: 15px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: var(--primary-blue);
+    font-weight: 500;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+  }
+
+  .popularity-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(25, 118, 210, 0.9);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 10px;
+  }
+
+  .page-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--medium-gray);
+    background: var(--white);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .page-button:hover {
+    background: var(--light-blue);
+    transform: scale(1.1);
+  }
+
+  .page-button.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+  }
+
+  .credits {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-gray);
+    padding-bottom: 30px;
+    font-style: italic;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 50px;
+    color: var(--text-gray);
+    font-size: 18px;
+    grid-column: 1 / -1;
+  }
+
+  .no-results i {
+    font-size: 40px;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .search-container, .suggested-monuments {
+      width: 95%;
+    }
+    
+    .search-bar {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding-left: 45px;
+    }
+    
+    .search-button {
+      width: 100%;
+      justify-content: center;
+      margin-left: 0;
+    }
+    
+    .filters, .sort-buttons {
+      justify-content: center;
+    }
+    
+    .monument-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+/* Header Styles */
+.main-header {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #3498db;
+}
+
+</style>
+</head>
+<body>
+  <header class="main-header">
+    <nav class="main-nav">
+        <div class="logo">Explore India</div>
+        <ul class="nav-links">
+            <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\index.html">Home</a></li>
+            <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\mapcointainer.html">Destinations</a></li>
+            <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\about.html">About</a></li>
+            <li><a href="#">login</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="logo"><i class="fas fa-landmark" style="margin-top: 95px;"></i> monument explorer </div>
+
+  <div class="search-container">
+    <div class="search-bar">
+      <div class="search-icon"><i class="fas fa-search"></i></div>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search monuments, styles, or locations...">
+      <button class="search-button" onclick="searchMonuments()">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+    
+    <div class="filters-section">
+      <div class="filter-title">
+        <i class="fas fa-filter"></i> Monument Categories
+      </div>
+      <div class="filters" id="categoryFilters">
+        <div class="filter-chip active" onclick="filterMonuments('all')">
+          <i class="fas fa-globe"></i> All Monuments
+        </div>
+        <div class="filter-chip" onclick="filterMonuments('unesco')">
+          <i class="fas fa-archway"></i> UNESCO Sites
+        </div>
+        <div class="filter-chip" onclick="filterMonuments('forts')">
+          <i class="fas fa-fort-awesome"></i> Forts & Palaces
+        </div>
+        <div class="filter-chip" onclick="filterMonuments('temples')">
+          <i class="fas fa-temple"></i> Temples
+        </div>
+      </div>
+      
+      <div class="filter-title">
+        <i class="fas fa-sort"></i> Sort Results
+      </div>
+      <div class="sort-buttons" id="sortButtons">
+        <button class="sort-button active" onclick="sortMonuments('popularity')">
+          <i class="fas fa-fire"></i> Popularity
+        </button>
+        <button class="sort-button" onclick="sortMonuments('name_asc')">
+          <i class="fas fa-sort-alpha-down"></i> Name (A-Z)
+        </button>
+        <button class="sort-button" onclick="sortMonuments('name_desc')">
+          <i class="fas fa-sort-alpha-up"></i> Name (Z-A)
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="suggested-monuments">
+    <div class="results-header">
+      <div class="results-title">Iconic Monuments of India</div>
+    </div>
+    
+    <div class="monument-grid" id="monumentGrid">
+      <!-- Monuments will be populated by JavaScript -->
+    </div>
+    
+    <div class="pagination" id="pagination">
+      <!-- Pagination will be populated by JavaScript -->
+    </div>
+    
+  </div>
+
+  <script>
+    const monuments = [
+      { 
+        name: "Taj Mahal", 
+        location: "Agra, Uttar Pradesh", 
+        tags: ["unesco", "mughal"], 
+        popularity: 95,
+        image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+      },
+      { 
+        name: "Qutub Minar", 
+        location: "Delhi", 
+        tags: ["unesco", "medieval"], 
+        popularity: 85,
+        image: "https://plus.unsplash.com/premium_photo-1697730320983-f99aab252a44?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cXV0dWIlMjBtaW5hcnxlbnwwfHwwfHx8MA%3D%3D"
+      },
+      { 
+        name: "Hampi Ruins", 
+        location: "Karnataka", 
+        tags: ["unesco", "ancient"], 
+        popularity: 80,
+        image: "https://plus.unsplash.com/premium_photo-1694475518874-bd12a29e3332?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGh1bXBpJTIwcnVpbnN8ZW58MHx8MHx8fDA%3D"
+      },
+      { 
+        name: "Hawa Mahal", 
+        location: "Jaipur, Rajasthan", 
+        tags: ["forts", "rajput"], 
+        popularity: 75,
+        image: "https://media.istockphoto.com/id/510978989/photo/hawa-mahal-palace-in-jaipur-rajasthan.webp?a=1&b=1&s=612x612&w=0&k=20&c=R5K_3V-c5wK-bJ2iI5xJpLYmcMbXWeTBAlFf_2idNv4="
+      },
+      { 
+        name: "Konark Sun Temple", 
+        location: "Odisha", 
+        tags: ["unesco", "temples"], 
+        popularity: 70,
+        image: "https://images.unsplash.com/photo-1677211352662-30e7775c7ce8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3VuJTIwdGVtcGxlfGVufDB8fDB8fHww"
+      },
+      { 
+        name: "Mysore Palace", 
+        location: "Karnataka", 
+        tags: ["forts", "indo-saracenic"], 
+        popularity: 78,
+        image: "https://images.unsplash.com/photo-1600112356915-089abb8fc71a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bXlzb3JlJTIwcGFsYWNlfGVufDB8fDB8fHww"
+      },
+      { 
+        name: "Red Fort", 
+        location: "Delhi", 
+        tags: ["unesco", "mughal"], 
+        popularity: 88,
+        image: "https://images.unsplash.com/photo-1668885309462-89da4b87c930?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHJlZCUyMGZvcnR8ZW58MHx8MHx8fDA%3D"
+      },
+      { 
+        name: "Ajanta Caves", 
+        location: "Maharashtra", 
+        tags: ["unesco", "ancient"], 
+        popularity: 82,
+        image: "https://media.istockphoto.com/id/600687004/photo/kailas-temple-ellora.jpg?s=612x612&w=0&k=20&c=oQi6gWnxjHH2Xop_-ISfJExq3yC-ttbpPLawePBctQA="
+      },
+      { 
+        name: "Ellora Caves", 
+        location: "Maharashtra", 
+        tags: ["unesco", "ancient"], 
+        popularity: 80,
+        image: "https://plus.unsplash.com/premium_photo-1697730364913-61ebe23e2dd7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWxsb3JhJTIwY2F2ZXN8ZW58MHx8MHx8fDA%3D"
+      },
+      { 
+        name: "Golden Temple", 
+        location: "Amritsar, Punjab", 
+        tags: ["temples"], 
+        popularity: 90,
+        image: "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z29sZGVuJTIwdGVtcGxlfGVufDB8fDB8fHww"
+      },
+      { 
+        name: "Meenakshi Temple", 
+        location: "Madurai, Tamil Nadu", 
+        tags: ["temples"], 
+        popularity: 77,
+        image: "https://media.istockphoto.com/id/614122766/photo/asia-india-madurai.webp?a=1&b=1&s=612x612&w=0&k=20&c=vqjv2SFQh3u6jvgLBK63UqGREutx5x7YuB9mOd_Wz6Q="
+      },
+      { 
+        name: "Gateway of India", 
+        location: "Mumbai, Maharashtra", 
+        tags: ["colonial"], 
+        popularity: 85,
+        image: "https://media.istockphoto.com/id/1307189136/photo/gateway-of-india-mumbai-maharashtra-monument-landmark-famous-place-magnificent-view-without.webp?a=1&b=1&s=612x612&w=0&k=20&c=7oqmH19nUftTYR_Gb5w2_yTpflOU9bRG8cOhhckT9CY="
+      },
+      { 
+        name: "Khajuraho Temples", 
+        location: "Madhya Pradesh", 
+        tags: ["unesco", "temples"], 
+        popularity: 73,
+        image: "https://images.unsplash.com/photo-1672215052011-9f017d20c762?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGtoYWp1cmFobyUyMHRlbXBsZXxlbnwwfHwwfHx8MA%3D%3D"
+      },
+      { 
+        name: "Fatehpur Sikri", 
+        location: "Uttar Pradesh", 
+        tags: ["unesco", "mughal"], 
+        popularity: 76,
+        image: "https://plus.unsplash.com/premium_photo-1697730300605-8f099d0f36e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RmF0ZWhwdXIlMjBTaWtyaXxlbnwwfHwwfHx8MA%3D%3D"
+      },
+      { 
+        name: "Jantar Mantar", 
+        location: "Jaipur, Rajasthan", 
+        tags: ["unesco", "ancient"], 
+        popularity: 70,
+        image: "https://media.istockphoto.com/id/658130148/photo/jantar-matar-architectural-astronomical-instruments-jaipur.jpg?s=612x612&w=0&k=20&c=TyUHOrJe3C5ERSJGg5XnIwgMdN12--1zUa82yu_eHQs="
+      },
+      { 
+        name: "Charminar", 
+        location: "Hyderabad, Telangana", 
+        tags: ["mosques"], 
+        popularity: 74,
+        image: "https://media.istockphoto.com/id/518256134/photo/charminar.jpg?s=612x612&w=0&k=20&c=El2-xCRHhkaDHJwz4cUzNmJ8E_FVAqwutwQIvn4vReA="
+      }
+    ];
+
+    let currentFilter = 'all';
+    let currentSort = 'popularity';
+    let currentPage = 1;
+    const itemsPerPage = 8;
+
+    function renderMonuments() {
+      let filteredMonuments = monuments.filter(monument => 
+        currentFilter === 'all' || monument.tags.includes(currentFilter)
+      );
+
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      if (searchTerm) {
+        filteredMonuments = filteredMonuments.filter(monument =>
+          monument.name.toLowerCase().includes(searchTerm) ||
+          monument.location.toLowerCase().includes(searchTerm) ||
+          monument.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        );
+      }
+
+      filteredMonuments.sort((a, b) => {
+        if (currentSort === 'popularity') return b.popularity - a.popularity;
+        if (currentSort === 'name_asc') return a.name.localeCompare(b.name);
+        if (currentSort === 'name_desc') return b.name.localeCompare(a.name);
+      });
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const paginatedMonuments = filteredMonuments.slice(startIndex, startIndex + itemsPerPage);
+
+      const grid = document.getElementById('monumentGrid');
+      if (filteredMonuments.length === 0) {
+        grid.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-landmark"></i>
+            <div>No monuments found matching your search criteria</div>
+          </div>
+        `;
+        document.getElementById('pagination').innerHTML = '';
+        return;
+      }
+
+      grid.innerHTML = paginatedMonuments.map(monument => `
+        <div class="monument-card">
+          <div class="popularity-badge">
+            <i class="fas fa-star"></i> ${monument.popularity}
+          </div>
+          <img src="${monument.image}" alt="${monument.name}" class="monument-image">
+          <div class="monument-info">
+            <div class="monument-name">${monument.name}</div>
+            <div class="monument-location">
+              <i class="fas fa-map-marker-alt"></i> ${monument.location}
+            </div>
+            <div class="monument-tags">
+              ${monument.tags.map(tag => `<span class="monument-tag">${tag}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      renderPagination(filteredMonuments.length);
+    }
+
+    function renderPagination(totalItems) {
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+      
+      if (totalPages <= 1) return;
+      
+      // Previous button
+      if (currentPage > 1) {
+        pagination.innerHTML += `
+          <div class="page-button" onclick="changePage(${currentPage - 1})">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+        `;
+      }
+      
+      // Page numbers
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      
+      if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+      
+      if (startPage > 1) {
+        pagination.innerHTML += `
+          <div class="page-button" onclick="changePage(1)">1</div>
+          ${startPage > 2 ? '<div class="page-button disabled">...</div>' : ''}
+        `;
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        pagination.innerHTML += `
+          <div class="page-button ${i === currentPage ? 'active' : ''}" 
+               onclick="changePage(${i})">${i}</div>
+        `;
+      }
+      
+      if (endPage < totalPages) {
+        pagination.innerHTML += `
+          ${endPage < totalPages - 1 ? '<div class="page-button disabled">...</div>' : ''}
+          <div class="page-button" onclick="changePage(${totalPages})">${totalPages}</div>
+        `;
+      }
+      
+      // Next button
+      if (currentPage < totalPages) {
+        pagination.innerHTML += `
+          <div class="page-button" onclick="changePage(${currentPage + 1})">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        `;
+      }
+    }
+
+    function filterMonuments(category) {
+      currentFilter = category;
+      currentPage = 1;
+      document.querySelectorAll('.filter-chip').forEach(chip => 
+        chip.classList.toggle('active', chip.onclick.toString().includes(`'${category}'`))
+      );
+      renderMonuments();
+    }
+
+    function sortMonuments(sortType) {
+      currentSort = sortType;
+      currentPage = 1;
+      document.querySelectorAll('.sort-button').forEach(btn => 
+        btn.classList.toggle('active', btn.onclick.toString().includes(`'${sortType}'`))
+      );
+      renderMonuments();
+    }
+
+    function searchMonuments() {
+      currentPage = 1;
+      renderMonuments();
+    }
+
+    function changePage(page) {
+      currentPage = page;
+      renderMonuments();
+      window.scrollTo({ top: document.querySelector('.suggested-monuments').offsetTop - 20, behavior: 'smooth' });
+    }
+
+    // Initial render
+    renderMonuments();
+
+    // Add enter key listener for search
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') searchMonuments();
+    });
+
+    // Add debounce to search input
+    let searchTimeout;
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        searchMonuments();
+      }, 500);
+    });
+  </script>
+</body>
+</html>

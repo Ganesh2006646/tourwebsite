@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Tour Packages in India</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .tour-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .tour-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .tour-duration {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .tour-content {
+            padding: 20px;
+        }
+        
+        .tour-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .tour-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .tour-highlights {
+            margin-bottom: 15px;
+        }
+        
+        .tour-highlights h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .highlights-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .highlight-tag {
+            background-color: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 15px;
+            color: #555;
+        }
+        
+        .tour-price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .tour-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff5722;
+        }
+        
+        .book-btn {
+            background-color: #12bbf8;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .book-btn:hover {
+            background-color: #5d0df2;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #360ae9, #0988f0);
+        }
+        
+
+        
+/* Header Styles */
+.main-header {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #3498db;
+}
+
+
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="logo">Explore India</div>
+            <ul class="nav-links">
+                <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\index.html">Home</a></li>
+                <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\mapcointainer.html">Destinations</a></li>
+                <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\about.html">About</a></li>
+                <li><a href="#">login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container" align="center" style=" margin-top: 55px">
+
+            <h1>Popular Tour Packages in India</h1>
+            
+
+        
+        <main>
+            <h2 class="section-title">Explore India's Top Destinations</h2>
+            
+            <div class="tour-grid">
+                <!-- Golden Triangle Tour -->
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80')">
+                        <div class="tour-duration">6 Days / 5 Nights</div>
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Golden Triangle Tour</h3>
+                        <p class="tour-description">Experience the perfect introduction to India's rich history and culture through the iconic cities of Delhi, Agra, and Jaipur.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <div class="highlights-list">
+                                <span class="highlight-tag">Taj Mahal</span>
+                                <span class="highlight-tag">Red Fort</span>
+                                <span class="highlight-tag">Amber Fort</span>
+                                <span class="highlight-tag">Hawa Mahal</span>
+                                <span class="highlight-tag">Qutub Minar</span>
+                            </div>
+                        </div>
+                        <div class="tour-price-container">
+                            <div class="tour-price">₹32,999 per person</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kerala Backwaters -->
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80')"> 
+                        <div class="tour-duration">7 Days / 6 Nights</div>
+                    </div>
+                    
+                    <div class="tour-content">
+                        <h3 class="tour-title">Kerala Backwaters Escape</h3>
+                        <p class="tour-description">Immerse yourself in the tranquil beauty of Kerala's palm-fringed backwaters, pristine beaches, and lush hill stations.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <div class="highlights-list">
+                                <span class="highlight-tag">Houseboat Stay</span>
+                                <span class="highlight-tag">Munnar Tea Gardens</span>
+                                <span class="highlight-tag">Kovalam Beach</span>
+                                <span class="highlight-tag">Ayurvedic Spa</span>
+                                <span class="highlight-tag">Fort Kochi</span>
+                            </div>
+                        </div>
+                        <div class="tour-price-container">
+                            <div class="tour-price">₹36,500 per person</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rajasthan Heritage -->
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image: url('https://images.unsplash.com/photo-1532375810709-75b1da00537c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80')">
+                            <div class="tour-duration">10 Days / 9 Nights</div>
+                        </div>
+                <div class="tour-content">
+                        <h3 class="tour-title">Rajasthan Royal Heritage</h3>
+                        <p class="tour-description">Step into the land of maharajas and experience the colorful culture, majestic forts, and vibrant cities of Rajasthan.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <div class="highlights-list">
+                                <span class="highlight-tag">Udaipur Lake Palace</span>
+                                <span class="highlight-tag">Jodhpur Blue City</span>
+                                <span class="highlight-tag">Jaisalmer Desert</span>
+                                <span class="highlight-tag">Pushkar Fair</span>
+                                <span class="highlight-tag">Heritage Hotels</span>
+                            </div>
+                        </div>
+                        <div class="tour-price-container">
+                            <div class="tour-price">₹45,999 per person</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Himalayan Adventure -->
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image: url('https://images.unsplash.com/photo-1617380613434-7495e9b45dfb?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+                        <div class="tour-duration">8 Days / 7 Nights</div>
+                    </div>
+                    
+                    <div class="tour-content">
+                        <h3 class="tour-title">Himalayan Mountain Adventure</h3>
+                        <p class="tour-description">Discover the breathtaking beauty of India's northern mountain landscapes, including charming hill stations and spiritual retreats.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <div class="highlights-list">
+                                <span class="highlight-tag">Shimla</span>
+                                <span class="highlight-tag">Manali</span>
+                                <span class="highlight-tag">Dharamshala</span>
+                                <span class="highlight-tag">Rohtang Pass</span>
+                                <span class="highlight-tag">Adventure Sports</span>
+                            </div>
+                        </div>
+                        <div class="tour-price-container">
+                            <div class="tour-price">₹39,499 per person</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Goa Beach Holiday -->
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80')">
+                        <div class="tour-duration">5 Days / 4 Nights</div>
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Goa Beach Holiday</h3>
+                        <p class="tour-description">Relax on pristine beaches, indulge in delicious seafood, and explore the Portuguese heritage of India's favorite beach destination.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <div class="highlights-list">
+                                <span class="highlight-tag">Calangute Beach</span>
+                                <span class="highlight-tag">Old Goa Churches</span>
+                                <span class="highlight-tag">Spice Plantations</span>
+                                <span class="highlight-tag">Dudhsagar Falls</span>
+                                <span class="highlight-tag">Water Sports</span>
+                            </div>
+                        </div>
+                        <div class="tour-price-container">
+                            <div class="tour-price">₹28,999 per person</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spiritual North India -->
+                <div class="tour-card">
+                    <div class="tour-image" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80')">
+                        <div class="tour-duration">9 Days / 8 Nights</div>
+                    </div>
+                    
+                    
+                    <div class="tour-content">
+                        <h3 class="tour-title">Spiritual North India Journey</h3>
+                        <p class="tour-description">Embark on a soul-stirring pilgrimage to India's most sacred cities along the holy Ganges River.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <div class="highlights-list">
+                                <span class="highlight-tag">Varanasi Ghats</span>
+                                <span class="highlight-tag">Rishikesh</span>
+                                <span class="highlight-tag">Haridwar</span>
+                                <span class="highlight-tag">Amritsar Golden Temple</span>
+                                <span class="highlight-tag">Ganga Aarti</span>
+                            </div>
+                        </div>
+                        <div class="tour-price-container">
+                            <div class="tour-price">₹41,500 per person</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+       
+    </div>
+</body>
+</html>

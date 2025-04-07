@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Transit Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .header-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+
+        .mode-card {
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .mode-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .ticket-design {
+            background: #ffffff;
+            border-left: 6px solid #1e40af;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #1e40af 0%, #1e3a8a 100%);
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="header-bg text-white fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-semibold">TRANSPORT OVER MONUMENTS</h1>
+            <div class="flex gap-4">
+                <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\map.html">
+                    <button class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold flex items-center">
+                        <i style="margin-right: 5px;"></i>map
+                    </button>
+                </a>
+            
+                <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\specials\transport.html">
+                    <button class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold flex items-center">
+                        <i style="margin-right: 5px;"></i>transport
+                    </button>
+                </a>
+            </div>   
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24 pb-12">
+        <!-- Mode Selection -->
+        <section id="modeSection" class="space-y-12">
+            <h2 class="text-3xl font-bold text-center text-blue-900">Choose Your Travel Mode</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Bus Card -->
+                <div class="mode-card rounded-lg relative overflow-hidden" 
+                     style="background-image: url('https://media.istockphoto.com/id/1470569235/photo/electric-city-bus-recharging-at-the-bus-charge-station-connected-with-a-power-cable.webp?a=1&b=1&s=612x612&w=0&k=20&c=3q00NuYiDM6A-w5stnguvXa2jjsBQGJ5-xDuG49riMA=')">
+                    <div class="mode-overlay absolute inset-0 flex items-end p-6">
+                        <button data-mode="bus" class="text-white text-xl font-semibold bg-white/10 px-6 py-3 rounded-lg backdrop-blur-sm hover:bg-white/20 w-full text-left">
+                            <i class="fas fa-bus mr-2"></i>Bus Services
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Train Card -->
+                <div class="mode-card rounded-lg relative overflow-hidden" 
+                     style="background-image: url('https://media.istockphoto.com/id/1307141189/photo/a-hydrogen-fuel-cell-train.webp?a=1&b=1&s=612x612&w=0&k=20&c=yk6BgQCL7OyW0B1QXaYJhdAAwBzvMop1mDuN3at77mY=&fit=crop&w=1350&q=80')">
+                    <div class="mode-overlay absolute inset-0 flex items-end p-6">
+                        <button data-mode="train" class="text-white text-xl font-semibold bg-white/10 px-6 py-3 rounded-lg backdrop-blur-sm hover:bg-white/20 w-full text-left">
+                            <i class="fas fa-train mr-2"></i>Train Services
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flight Card -->
+                <div class="mode-card rounded-lg relative overflow-hidden" 
+                     style="background-image: url('https://media.istockphoto.com/id/1149089650/photo/passenger-airplane-getting-ready-for-flight.webp?a=1&b=1&s=612x612&w=0&k=20&c=Arv5FSsJ4psCzN8yBeSWhFXZY7fzCaIF8ekO2pfOcew=')">
+                    <div class="mode-overlay absolute inset-0 flex items-end p-6">
+                        <button data-mode="flight" class="text-white text-xl font-semibold bg-white/10 px-6 py-3 rounded-lg backdrop-blur-sm hover:bg-white/20 w-full text-left">
+                            <i class="fas fa-plane-departure mr-2"></i>Flight Services
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Selection -->
+        <section id="companySection" class="hidden space-y-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-blue-900 flex items-center">
+                    <i class="fas fa-building mr-3"></i>Select Service Provider
+                </h2>
+                <button onclick="showSection('modeSection')" class="text-blue-700 hover:text-blue-900">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Modes
+                </button>
+            </div>
+            <div id="companyGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Booking Form -->
+        <section id="formSection" class="hidden max-w-2xl mx-auto">
+            <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-blue-900 flex items-center">
+                    <i class="fas fa-edit mr-3"></i>Travel Details
+                </h2>
+                <form id="bookingForm" class="space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center border-b border-gray-300 pb-2">
+                            <i class="fas fa-user text-gray-500 mr-3"></i>
+                            <input type="text" name="name" placeholder="Full Name" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                        </div>
+                        <div class="flex items-center border-b border-gray-300 pb-2">
+                            <i class="fas fa-envelope text-gray-500 mr-3"></i>
+                            <input type="email" name="email" placeholder="Email Address" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                        </div>
+                        <div class="flex items-center border-b border-gray-300 pb-2">
+                            <i class="fas fa-phone text-gray-500 mr-3"></i>
+                            <input type="tel" name="phone" placeholder="Mobile Number" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-center border-b border-gray-300 pb-2">
+                                <i class="fas fa-calendar-day text-gray-500 mr-3"></i>
+                                <input type="date" name="date" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                            </div>
+                            <div class="flex items-center border-b border-gray-300 pb-2">
+                                <i class="fas fa-chair text-gray-500 mr-3"></i>
+                                <select name="class" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                                    <option value="">Select Class</option>
+                                    <option>Economy</option>
+                                    <option>Business</option>
+                                    <option>First Class</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-center border-b border-gray-300 pb-2">
+                                <i class="fas fa-map-marker-alt text-gray-500 mr-3"></i>
+                                <input type="text" name="departure" placeholder="Departure City" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                            </div>
+                            <div class="flex items-center border-b border-gray-300 pb-2">
+                                <i class="fas fa-map-marker text-gray-500 mr-3"></i>
+                                <input type="text" name="destination" placeholder="Destination City" class="flex-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-blue-900">Estimated Fare: <span id="fareAmount">₹ 0</span></h3>
+                        <p class="text-sm text-blue-600">Inclusive of all taxes and charges</p>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-4">
+                        <button type="button" onclick="showSection('companySection')" class="text-blue-700 hover:text-blue-900">
+                            <i class="fas fa-arrow-left mr-2"></i>Back
+                        </button>
+                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg font-semibold">
+                            Confirm Booking <i class="fas fa-check ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Ticket Display -->
+        <section id="ticketSection" class="hidden max-w-2xl mx-auto">
+            <div class="ticket-design p-8 rounded-lg">
+                <div class="absolute right-8 top-8 opacity-20">
+                    <i class="fas fa-receipt text-6xl text-blue-600"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-6 text-blue-900 flex items-center">
+                    <i class="fas fa-ticket-alt mr-3"></i>Electronic Travel Ticket
+                </h2>
+                <div id="ticketContent" class="space-y-4 mb-8"></div>
+                <div class="flex items-center justify-between border-t pt-4">
+                    <button onclick="downloadTicket()" class="btn-primary text-white px-6 py-2 rounded-lg">
+                        <i class="fas fa-download mr-2"></i>Download PDF
+                    </button>
+                    <div class="text-sm text-gray-600">
+                        Ticket ID: #<span id="ticketId">0000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const companies = {
+    bus: [
+        'RTC SERVICES', 'SRS Travels', 'KPN Travels', 'Orange Travels', 'KSRTC (Airavat)', 'Neeta Travels',
+        'VRL Travels', 'Parveen Travels', 'SRM Travels'
+    ],
+    train: [
+        'Rajdhani Express', 'Shatabdi', 'Duronto', 'Tejas', 'Vande Bharat', 'Garib Rath',
+        'Jan Shatabdi', 'Humsafar Express', 'Antyodaya Express'
+    ],
+    flight: [
+        'Vistara', 'Air India', 'IndiGo', 'SpiceJet', 'Akasa Air', 'AirAsia India',
+        'Alliance Air', 'Go First'
+    ]
+};
+
+const fareMatrix = {
+    bus: { base: 800, multiplier: 1.5 },
+    train: { base: 1500, multiplier: 2.0 },
+    flight: { base: 5000, multiplier: 3.0 },
+    companyRates: {
+        // Bus
+        'RTC SERVICES': 1.0, 'SRS Travels': 1.3, 'KPN Travels': 1.1, 'Orange Travels': 1.4,
+        'KSRTC (Airavat)': 1.0, 'Neeta Travels': 1.2, 'VRL Travels': 1.2,
+        'Parveen Travels': 1.3, 'SRM Travels': 1.3,
+
+        // Train
+        'Rajdhani Express': 1.8, 'Shatabdi': 1.7, 'Duronto': 1.6, 'Tejas': 2.0,
+        'Vande Bharat': 2.2, 'Garib Rath': 1.5, 'Jan Shatabdi': 1.4,
+        'Humsafar Express': 1.6, 'Antyodaya Express': 1.3,
+
+        // Flight
+        'Vistara': 2.5, 'Air India': 2.3, 'IndiGo': 2.0, 'SpiceJet': 1.8,
+        'Akasa Air': 2.1, 'AirAsia India': 1.9, 'Alliance Air': 2.2, 'Go First': 2.0
+    }
+};
+
+
+        let currentMode = '';
+        let currentCompany = '';
+        let currentFare = 0;
+        let ticketCounter = 1000;
+
+        // Mode Selection
+        document.querySelectorAll('[data-mode]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                currentMode = e.target.closest('button').dataset.mode;
+                showCompanies(currentMode);
+            });
+        });
+
+        function showCompanies(mode) {
+            const grid = document.getElementById('companyGrid');
+            grid.innerHTML = companies[mode].map(company => `
+                <div class="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-200"
+                     onclick="selectCompany('${company}')">
+                    <h3 class="text-lg font-semibold text-blue-900 mb-2">${company}</h3>
+                    <div class="flex justify-between items-center text-sm text-gray-600">
+                        <span>${mode.toUpperCase()}</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            `).join('');
+            showSection('companySection');
+        }
+
+        function selectCompany(company) {
+            currentCompany = company;
+            calculateFare();
+            showSection('formSection');
+        }
+
+        // Fare Calculation
+        function calculateFare() {
+            const base = fareMatrix[currentMode].base;
+            const companyRate = fareMatrix.companyRates[currentCompany] || 1.0;
+            currentFare = Math.round(base * fareMatrix[currentMode].multiplier * companyRate);
+            document.getElementById('fareAmount').textContent = `₹ ${currentFare}`;
+        }
+
+        // Form Handling
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const ticketId = `TKT-${ticketCounter++}`;
+            
+            document.getElementById('ticketContent').innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-blue-900">Ticket ID:</span>
+                        <span>${ticketId}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-blue-900">Service Provider:</span>
+                        <span>${currentCompany}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-blue-900">Passenger Name:</span>
+                        <span>${formData.get('name')}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-blue-900">Journey Date:</span>
+                        <span>${formData.get('date')}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-blue-900">Route:</span>
+                        <span>${formData.get('departure')} → ${formData.get('destination')}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-semibold text-blue-900">Class:</span>
+                        <span>${formData.get('class')}</span>
+                    </div>
+                    <div class="flex justify-between border-t pt-3">
+                        <span class="font-semibold text-blue-900">Total Fare:</span>
+                        <span class="text-xl font-bold text-blue-600">₹ ${currentFare}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('ticketId').textContent = ticketId;
+            showSection('ticketSection');
+        });
+
+        // Section Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Ticket Download
+        function downloadTicket() {
+            const ticketElement = document.getElementById('ticketSection');
+            const ticketId = document.getElementById('ticketId').textContent;
+
+            html2canvas(ticketElement).then(canvas => {
+                const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 210;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save(`ticket-${ticketId}.pdf`);
+            });
+        }
+    </script>
+</body>
+</html>

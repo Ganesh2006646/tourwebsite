@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Reserve - Restaurant Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        .menu-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-900 shadow-lg fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-semibold text-white">DESERVE FOOD AT YOUR FOOT</h1>
+            <div class="flex gap-4" style="color: aliceblue;">
+                <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\map.html">
+                    <button class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold flex items-center">
+                        <i style="margin-right: 5px; color: aliceblue;"></i>map
+                    </button>
+                </a>
+            
+                <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\specials\resaurent.html">
+                    <button class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold flex items-center">
+                        <i style="margin-right: 5px;color: aliceblue;"></i>foods
+                    </button>
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24 pb-12">
+        <!-- Cuisine Selection -->
+        <section id="cuisineSection" class="space-y-8">
+            <h2 class="text-3xl font-bold text-center text-blue-900">Select Your Cuisine</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button data-cuisine="indian" class="menu-card bg-white p-6 rounded-lg shadow-md text-left">
+                    <img src="https://media.istockphoto.com/id/1250567402/photo/table-top-view-of-indian-food.webp?a=1&b=1&s=612x612&w=0&k=20&c=B0Rjj7SmL3PJhPBB23UTbJpBui19DgzIpYLbX4PzwM0=" alt="Indian Cuisine" class="w-full h-40 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900">Indian</h3>
+                </button>
+                <button data-cuisine="chinese" class="menu-card bg-white p-6 rounded-lg shadow-md text-left">
+                    <img src="https://media.istockphoto.com/id/1198150167/photo/steamed-asian-dumplings.webp?a=1&b=1&s=612x612&w=0&k=20&c=pVbxFe3qJJc84qRbJnANx0AvBCD81O0WIzJ0jZejmxI=" alt="Chinese Cuisine" class="w-full h-40 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900">Chinese</h3>
+                </button>
+                <button data-cuisine="italian" class="menu-card bg-white p-6 rounded-lg shadow-md text-left">
+                    <img src="https://media.istockphoto.com/id/1198079266/photo/deluxe-pizza-with-pepperoni-sausage-mushrooms-and-peppers.webp?a=1&b=1&s=612x612&w=0&k=20&c=iIn_o7pSEgDcchNgU6axDJvHkZessshM9vB_IVECx1k=" alt="Italian Cuisine" class="w-full h-40 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900">Italian</h3>
+                </button>
+                <button data-cuisine="mexican" class="menu-card bg-white p-6 rounded-lg shadow-md text-left">
+                    <img src="https://images.unsplash.com/photo-1640983743761-4f0e0204bc58?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TUVYSUNBTiUyMEN1aXNpbmV8ZW58MHx8MHx8fDA%3D" alt="Mexican Cuisine" class="w-full h-40 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900">Mexican</h3>
+                </button>
+                <button data-cuisine="thai" class="menu-card bg-white p-6 rounded-lg shadow-md text-left">
+                    <img src="https://plus.unsplash.com/premium_photo-1661607229579-dd06d36302fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fFRIQUklMjBDdWlzaW5lfGVufDB8MHwwfHx8MA%3D%3D" alt="Thai Cuisine" class="w-full h-40 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900">Thai</h3>
+                </button>
+                <button data-cuisine="continental" class="menu-card bg-white p-6 rounded-lg shadow-md text-left">
+                    <img src="https://images.unsplash.com/photo-1719468313397-25018d96079b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Q09OVElORU5UQUwlMjBDdWlzaW5lfGVufDB8MHwwfHx8MA%3D%3D" alt="Continental Cuisine" class="w-full h-40 object-cover rounded-t-lg mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900">Continental</h3>
+                </button>
+            </div>
+        </section>
+
+        <!-- Restaurant Selection -->
+        <section id="restaurantSection" class="hidden space-y-8">
+            <div class="flex items-center justify-between mb-8">
+                <button onclick="showSection('cuisineSection')" class="text-blue-700 hover:text-blue-900">
+                    ← Back to Cuisines
+                </button>
+                <h2 class="text-3xl font-bold text-blue-900">Select Restaurant</h2>
+                <div></div>
+            </div>
+            <div id="restaurantGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Booking Form -->
+        <section id="formSection" class="hidden max-w-2xl mx-auto">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <div class="flex items-center justify-between mb-8">
+                    <button onclick="showSection('restaurantSection')" class="text-blue-700 hover:text-blue-900">
+                        ← Back to Restaurants
+                    </button>
+                    <h2 class="text-2xl font-bold text-blue-900">Booking Details</h2>
+                    <div></div>
+                </div>
+                <form id="bookingForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Full Name" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        <input type="email" placeholder="Email" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        <input type="tel" placeholder="Phone Number" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        <input type="datetime-local" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <select class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" id="guests" required>
+                            <option value="">Number of Guests</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5+</option>
+                        </select>
+                        <textarea placeholder="Special Requests" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-900">Estimated Cost: 
+                            <span id="estimatedCost">₹ 0</span>
+                        </h3>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg">
+                            Confirm Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Reservation Ticket -->
+        <section id="ticketSection" class="hidden max-w-2xl mx-auto py-8">
+            <div class="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden border border-gray-100">
+                <!-- Decorative circle with gradient -->
+                <div class="absolute -top-20 -right-20 w-56 h-56 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full opacity-70"></div>
+                
+                <!-- Header with improved spacing and responsiveness -->
+                <div class="flex items-center justify-between mb-8 relative z-10">
+                    <button 
+                        onclick="showSection('formSection')" 
+                        class="text-blue-700 hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full p-2 transition-colors"
+                        aria-label="Back to booking form">
+                        ← Back to Form
+                    </button>
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-900 text-center">Your Reservation</h2>
+                    <div class="w-12"></div> <!-- Spacer for symmetry -->
+                </div>
+        
+                <!-- Ticket content area with better typography -->
+                <div id="ticketContent" class="space-y-5 mb-8 text-gray-800 relative z-10">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+        
+                <!-- Download button with improved styling and accessibility -->
+                <button 
+                    onclick="downloadTicket()" 
+                    class="btn-primary w-full sm:w-auto bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+                    aria-label="Download your reservation ticket">
+                    Download Ticket
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const restaurants = {
+            indian: [
+                'Biryani Blues', 'Rajdhani Thali', 'The Great Indian Kitchen',
+                'Pind Balluchi', 'Sagar Ratna', 'Saravana Bhavan'
+            ],
+            chinese: [
+                'Mainland China', 'Haka', 'Wok Express',
+                'Yauatcha', 'The China Kitchen', 'Royal China'
+            ],
+            italian: [
+                'Little Italy', 'La Pinoz', 'Olive Bar & Kitchen',
+                'Toscano', 'Prego', 'Café Italiano'
+            ],
+            mexican: [
+                'Mexico Lindo', 'Taco Bell', 'Sancho’s',
+                'Muchos - Mexican Kitchen', 'Amigos', 'Chili’s'
+            ],
+            thai: [
+                'Thai High', 'Blue Ginger', 'The Thai House',
+                'Lemongrass', 'Pinto Thai', 'Benjarong'
+            ],
+            continental: [
+                'The Black Pearl', 'Indigo Deli', 'Salt Water Café',
+                'Sodabottleopenerwala', 'The Beer Café', 'Bombay Brasserie'
+            ]
+        };
+
+        const prices = {
+    'Biryani Blues': 600,
+    'Rajdhani Thali': 800,
+    'The Great Indian Kitchen': 750,
+    'Mainland China': 1200,
+    'Haka': 900,
+    'Wok Express': 700,
+    // Add prices for all other restaurants as needed
+};
+
+let currentCuisine = '';
+let currentRestaurant = '';
+let currentPrice = 0;
+
+// Assume restaurants object is defined somewhere - this is a potential error if missing
+// Example: const restaurants = { 'Indian': ['Biryani Blues', 'Rajdhani Thali'], ... };
+
+// Cuisine Selection
+document.querySelectorAll('[data-cuisine]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentCuisine = btn.dataset.cuisine;
+        showRestaurants(currentCuisine);
+    });
+});
+
+function showRestaurants(cuisine) {
+    const grid = document.getElementById('restaurantGrid');
+    if (!grid) {
+        console.error('Restaurant grid element not found');
+        return;
+    }
+    // Check if restaurants[cuisine] exists to prevent undefined error
+    if (!restaurants || !restaurants[cuisine]) {
+        grid.innerHTML = '<p>No restaurants available for this cuisine.</p>';
+        return;
+    }
+    grid.innerHTML = restaurants[cuisine].map(restaurant => `
+        <div class="menu-card bg-white p-6 rounded-lg shadow-md cursor-pointer"
+             onclick="selectRestaurant('${restaurant}')">
+            <h3 class="text-xl font-semibold text-blue-900 mb-2">${restaurant}</h3>
+            <div class="price-tag inline-block px-3 py-1 rounded-full text-white text-sm">
+                ₹ ${prices[restaurant] || '800'} per person
+            </div>
+        </div>
+    `).join('');
+    showSection('restaurantSection');
+}
+
+function selectRestaurant(restaurant) {
+    currentRestaurant = restaurant;
+    currentPrice = prices[restaurant] || 800;
+    updateEstimate();
+    showSection('formSection');
+}
+
+// Price Calculation
+function updateEstimate() {
+    const guestsInput = document.getElementById('guests');
+    if (!guestsInput) {
+        console.error('Guests input element not found');
+        return;
+    }
+    const guests = parseInt(guestsInput.value) || 1; // Ensure valid number
+    const estimatedCost = document.getElementById('estimatedCost');
+    if (!estimatedCost) {
+        console.error('Estimated cost element not found');
+        return;
+    }
+    estimatedCost.textContent = `₹ ${currentPrice * guests}`;
+}
+
+document.getElementById('guests').addEventListener('change', updateEstimate);
+
+// Form Submission
+document.getElementById('bookingForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    const ticketContent = document.getElementById('ticketContent');
+    if (!ticketContent) {
+        console.error('Ticket content element not found');
+        return;
+    }
+
+    ticketContent.innerHTML = `
+        <div class="space-y-3">
+            <div class="flex justify-between items-center border-b pb-2">
+                <span class="font-semibold text-blue-900\
+                <span>${currentRestaurant || 'Not selected'}</span>
+            </div>
+            <div class="flex justify-between items-center border-b pb-2">
+                <span class="font-semibold text-blue-900">Date & Time:</span>
+                <span>${formData.get('datetime') || 'Not specified'}</span>
+            </div>
+            <div class="flex justify-between items-center border-b pb-2">
+                <span class="font-semibold text-blue-900">Guests:</span>
+                <span>${formData.get('guests') || '1'}</span>
+            </div>
+            <div class="flex justify-between items-center border-b pb-2">
+                <span class="font-semibold text-blue-900">Total Cost:</span>
+                <span class="text-blue-600 font-bold">₹ ${currentPrice * parseInt(formData.get('guests') || 1)}</span>
+            </div>
+            ${formData.get('requests') ? `
+            <div class="pt-4">
+                <p class="font-semibold text-blue-900">Special Requests:</p>
+                <p>${formData.get('requests')}</p>
+            </div>` : ''}
+        </div>
+    `;
+    
+    showSection('ticketSection');
+});
+
+// Missing showSection function - adding a basic implementation
+function showSection(sectionId) {
+    const sections = ['restaurantSection', 'formSection', 'ticketSection'];
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.style.display = id === sectionId ? 'block' : 'none';
+        }
+    });
+}
+
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // PDF Download
+        function downloadTicket() {
+            const ticket = document.getElementById('ticketSection');
+            html2canvas(ticket).then(canvas => {
+                const pdf = new jspdf.jsPDF();
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 210;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save('reservation.pdf');
+            });
+        }
+    </script>
+</body>
+</html>

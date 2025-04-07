@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore India - Home</title>
+    <link rel="stylesheet" href="styles1.css">
+
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="logo">Explore India</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="C:\Users\Ganesh\OneDrive\Desktop\uid\mapcointainer.html">Destinations</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#">login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Slideshow -->
+    <section class="hero-slideshow" label="Featured destinations">
+        <div class="slideshow-container">
+            <div class="slide active" style="background-image: url('images/tajmahal.jpg');" role="img" aria-label="Taj Mahal in Agra">
+                <div class="slide-content">
+                    <h2>Discover the Taj Mahal</h2>
+                    <p>A timeless symbol of love in Agra</p>
+                    <a href="https://en.wikipedia.org/wiki/Taj_Mahal" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: url('images/qutubminar.jpg');" role="img" aria-label="Qutub Minar in Delhi">
+                <div class="slide-content">
+                    <h2>Explore Qutub Minar</h2>
+                    <p>Delhi's towering historical marvel</p>
+                    <a href="https://en.wikipedia.org/wiki/Qutb_Minar" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: url('images/hawamahal.jpg');" role="img" aria-label="Hawa Mahal in Jaipur">
+                <div class="slide-content">
+                    <h2>Visit Hawa Mahal</h2>
+                    <p>Jaipur's iconic Palace of Winds</p>
+                    <a href="https://en.wikipedia.org/wiki/Hawa_Mahal" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            
+            <button class="slide-nav prev" aria-label="Previous slide">❮</button>
+            <button class="slide-nav next" aria-label="Next slide">❯</button>
+        </div>
+        <div class="slideshow-dots" role="tablist"></div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="container">
+            <h2>Welcome to Explore India</h2>
+            <p>Your ultimate guide to discovering India's rich cultural heritage, breathtaking landscapes, and vibrant cities. Our AI-powered platform helps you create personalized travel experiences tailored to your preferences.</p>
+            <div class="ai-suggestion">
+                <h3>AI Travel Suggestions</h3>
+                <div class="suggestion-box">
+                    <p id="aiSuggestionText">Looking for historical sites? Try our Golden Triangle tour covering Delhi, Agra, and Jaipur!</p>
+                    <button id="refreshSuggestion" aria-label="Get new travel suggestion">Get New Suggestion</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Destinations -->
+    <section class="featured-destinations">
+        <div class="container">
+            <h2>Featured Destinations</h2>
+            <div class="destinations-grid">
+                <div class="destination-card" data-destination="goa" tabindex="0">
+                    <img src="images\One day in Goa itinerary – Top things to do in Goa, India.jpeg" alt="Beaches in Goa">
+                    <div class="card-content">
+                        <h3>Goa</h3>
+                        <p>Sun, sand, and sea</p>
+                        <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\pakages.html" class="card-link" aria-hidden="true" tabindex="-1"></a>
+                    </div>
+                </div>
+                <div class="destination-card" data-destination="kerala" tabindex="0">
+                    <img src="images\Kerala Tourism.jpeg" alt="Backwaters in Kerala">
+                    <div class="card-content">
+                        <h3>Kerala</h3>
+                        <p>God's Own Country</p>
+                        <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\pakages.html" class="card-link" aria-hidden="true" tabindex="-1"></a>
+                    </div>
+                </div>
+                <div class="destination-card" data-destination="ladakh" tabindex="0">
+                    <img src="images\Ladakh Tour Packages.jpeg" alt="Mountains in Ladakh">
+                    <div class="card-content">
+                        <h3>Ladakh</h3>
+                        <p>Land of high passes</p>
+                        <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\pakages.html" class="card-link" aria-hidden="true" tabindex="-1"></a>
+                    </div>
+                </div>
+                <div class="destination-card" data-destination="varanasi" tabindex="0">
+                    <img src="images\The incredible stories behind the world’s most historic cities.jpeg" alt="Ghats in Varanasi">
+                    <div class="card-content">
+                        <h3>Varanasi</h3>
+                        <p>Spiritual capital of India</p>
+                        <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\pakages.html" class="card-link" aria-hidden="true" tabindex="-1"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="" class="cta-button">View All Destinations</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="video-section">
+        <h2 class="video-title">Featured Presentation</h2>
+        <p class="video-description">Watch our latest demo video</p>
+        
+        <div class="video-container">
+          <video class="video-player" poster="C:\Users\Ganesh\OneDrive\Desktop\uid\images\Map of india with a stylized landscape the taj vector image on VectorStock.jpeg">
+            <source src="C:\Users\Ganesh\OneDrive\Desktop\uid\images\WhatsApp Video 2025-04-05 at 14.38.17_a72bb327.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="video-controls">
+            <button class="play-btn" aria-label="Play/Pause">▶</button>
+            <span class="time-display">0:00 / 0:00</span>
+            <input type="range" class="progress" value="0">
+            <button class="fullscreen-btn" aria-label="Fullscreen">⛶</button>
+          </div>
+        </div>
+      </div>
+
+    <!-- Travel Blog -->
+    <section class="travel-blog">
+        <div class="container">
+            <h2>Travel Guides & Tips</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <img src="images\Map of india with a stylized landscape the taj vector image on VectorStock.jpeg" alt="Tourists in India">
+                    <div class="blog-content">
+                        <h3> Tourist Places Exploration</h3>
+                        <p>Discover breathtaking destinations handpicked for your perfect getaway<br>Explore the unexplored!</p>
+                        <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\search.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="images\INDIA tourism creative.jpeg" alt="Hidden village in India">
+                    <div class="blog-content">
+                        <h3>Popular Packages</h3>
+                        <p>Choose from our best-selling travel packages tailored for every kind of traveler.<br>Your dream trip, just a click away!
+                        </p>
+                        <a href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\pakages.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="images\AI and ML Transforming Meteorology and Forecasting Accuracy.jpeg" alt="Holi festival celebration">
+                    <div class="blog-content">
+                        <h3>Weather Conditions</h3>
+                        <p>Stay updated with real-time weather info to plan your travel smartly.<br>Sunshine or showers? We've got you covered!</p>
+                        <a href="https://www.windy.com/?11.014,76.994,5" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Explore India. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">Privacy Policy</a>
+                <a href="about.html">Terms of Service</a>
+                <a href="about.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

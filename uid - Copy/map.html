@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Leaflet Map - India</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles4.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <div id="main-container">
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <div id="split-view">
+        <button class="close-btn" onclick="closeSplitView()">
+            <i class="fas fa-times"></i> Close
+        </button>
+        <div id="split-container">
+            <div class="split-panel" id="wikipedia-panel">
+                <div class="panel-header">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Wikipedia Information</h3>
+                </div>
+                <div class="panel-content">
+                    <iframe id="wikipedia-frame" class="wikipedia-frame" src="about:blank"></iframe>
+                </div>
+            </div>
+            <div class="split-panel" id="map-panel">
+                <div class="panel-header">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Interactive Map</h3>
+                </div>
+                <div class="panel-content">
+                    <div id="map-detail" class="map-container"></div>
+                </div>
+            </div>
+            <div class="split-panel" id="options-panel">
+                <div class="panel-header">
+                    <i class="fas fa-route"></i>
+                    <h3>Travel Options</h3>
+                </div>
+                <div class="panel-content">
+                    <div class="option-buttons" >
+                        <a class="option-btn transport" href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\specials\transport.html" style="margin-top: 30px;">
+                            <i class="fas fa-bus"></i>
+                            <span>Transport Options</span>
+                        </a>
+                        <a class="option-btn hotels" href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\specials\hotel.html" style="margin-top: 30px;">
+                            <i class="fas fa-hotel"></i>
+                            <span>Find Hotels</span>
+                        </a>
+                        <a class="option-btn restaurants" href="C:\Users\Ganesh\OneDrive\Desktop\uid\forms\specials\resaurent.html" style="margin-top: 30px;">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurants</span>
+                        </a>
+                    </div>
+                </div>
+                
+                    
+                    <div id="place-details" class="place-details" style="margin-bottom: 150px;">
+                        <h4><i class="fas fa-info-circle"></i> Destination Details</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="map_script.js"></script>
+</body>
+</html>
